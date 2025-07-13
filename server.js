@@ -66,7 +66,9 @@ app.post("/register", async (req, res) => {
 
 // CRUD - 
 
-// 1. Read The Users - 
+// 1. Read The Users -
+
+
 // app.get("/get-users", (req, res) => {
 //     userModel.find({
 //       username : 'tejas'
@@ -76,14 +78,30 @@ app.post("/register", async (req, res) => {
 // })
 
 
-app.get("/get-users", (req, res) => {
-  userModel.findOne({
-    username : 'tejas'
-  }).then((user) => {
-    res.send(user)
-  })
-})
+// app.get("/get-users", (req, res) => {
+//   userModel.findOne({
+//     username : 'tejas'
+//   }).then((user) => {
+//     res.send(user)
+//   })
+// })
 
+
+
+// 2. Update - The user
+app.get("/update", async (req, res) => {
+  
+    await userModel.findOneAndUpdate
+    (
+      {
+        username  : 'dell'
+      },
+      {
+          email : "d@gmail.com"
+      }
+    )
+    res.send("User Updated!")
+})
 
 
 app.listen(port, () => {
