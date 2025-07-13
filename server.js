@@ -64,27 +64,27 @@ app.post("/register", async (req, res) => {
 })
 
 
-// CRUD - 
+// CRUD - CREATE-READ-UPDATE-DELETE
+
+
 
 // 1. Read The Users -
+app.get("/get-users", (req, res) => {
+    userModel.find({
+      username : 'tejas'
+    }).then((user) => {
+      res.send(user)
+    })
+})
 
 
-// app.get("/get-users", (req, res) => {
-//     userModel.find({
-//       username : 'tejas'
-//     }).then((user) => {
-//       res.send(user)
-//     })
-// })
-
-
-// app.get("/get-users", (req, res) => {
-//   userModel.findOne({
-//     username : 'tejas'
-//   }).then((user) => {
-//     res.send(user)
-//   })
-// })
+app.get("/get-users", (req, res) => {
+  userModel.findOne({
+    username : 'tejas'
+  }).then((user) => {
+    res.send(user)
+  })
+})
 
 
 
@@ -108,9 +108,7 @@ app.get("/detete-user", async (req, res) => {
   await userModel.findOneAndDelete({
       username : 'tejas'
   })
-
   res.send("User Deleted!")
-
 })
 
 
