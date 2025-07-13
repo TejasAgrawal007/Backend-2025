@@ -103,6 +103,16 @@ app.get("/update", async (req, res) => {
     res.send("User Updated!")
 })
 
+// 3. Delete User
+app.get("/detete-user", async (req, res) => {
+  await userModel.findOneAndDelete({
+      username : 'tejas'
+  })
+
+  res.send("User Deleted!")
+
+})
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
