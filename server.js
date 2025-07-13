@@ -1,4 +1,5 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 const port = 3000
 
@@ -6,6 +7,12 @@ const port = 3000
 app.set("view engine", 'ejs')
 
 
+// Third Party Middlewares
+app.use(morgan("dev"))
+
+
+
+// Custome Middlewares
 app.use((req, res, next) => {
     console.log("This is Middlewares")
     const a = 10;
@@ -15,7 +22,10 @@ app.use((req, res, next) => {
 })
 
 
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
+  console.log("Hello from Specific Middlewares")
+  next()
+}, (req, res) => {
   res.render('index')
 })
 
