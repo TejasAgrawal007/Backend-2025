@@ -4,11 +4,14 @@ const app = express()
 const port = 3000
 
 
+// Builtin Middlewares
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))  // use for req.body
+app.use(express.static("public"))
 
+
+// Setup View Engine
 app.set("view engine", 'ejs')
-
 
 // Third Party Middlewares
 app.use(morgan("dev"))
