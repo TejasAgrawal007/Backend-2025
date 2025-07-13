@@ -4,6 +4,12 @@ const app = express()
 const port = 3000
 
 
+// Require Mongoose Connection
+const dbConnection = require("./config/db")
+
+// Require User Model
+const userModel = require("./models/user")
+
 // Builtin Middlewares
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))  // use for req.body
