@@ -12,7 +12,7 @@ const userModel = require("./models/user")
 
 // Builtin Middlewares
 app.use(express.json())
-app.use(express.urlencoded({extended : true}))  // use for req.body
+app.use(express.urlencoded({ extended: true }))  // use for req.body
 app.use(express.static("public"))
 
 
@@ -25,11 +25,11 @@ app.use(morgan("dev"))
 
 // Custome Middlewares
 app.use((req, res, next) => {
-    console.log("This is Middlewares")
-    const a = 10;
-    const b = 20;
-    console.log(`The Sum = ${a + b}`)
-    next()
+  console.log("This is Middlewares")
+  const a = 10;
+  const b = 20;
+  console.log(`The Sum = ${a + b}`)
+  next()
 })
 
 
@@ -40,9 +40,27 @@ app.get('/', (req, res) => {
 
 app.post('/get-from-data', (req, res) => {
 
-    console.log(req.body)
-    res.send("Data Recived!")
+  console.log(req.body)
+  res.send("Data Recived!")
 
+})
+
+
+app.get("/register", (req, res) => {
+  res.render("register")
+})
+
+app.post("/register",async (req, res) => {
+
+  const { username, email, password } = req.body;
+
+  const newUser = await userModel.create({
+    username,
+    email,
+    password
+  })
+
+  res.json(newUser).send("User Created")
 })
 
 app.listen(port, () => {
