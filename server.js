@@ -4,12 +4,14 @@ const app = express()
 const port = 3000
 
 
+app.use(express.json())
+app.use(express.urlencoded({extended : true}))  // use for req.body
+
 app.set("view engine", 'ejs')
 
 
 // Third Party Middlewares
 app.use(morgan("dev"))
-
 
 
 // Custome Middlewares
@@ -22,11 +24,16 @@ app.use((req, res, next) => {
 })
 
 
-app.get('/', (req, res, next) => {
-  console.log("Hello from Specific Middlewares")
-  next()
-}, (req, res) => {
+app.get('/', (req, res) => {
   res.render('index')
+})
+
+
+app.post('/get-from-data', (req, res) => {
+
+    console.log(req.body)
+    res.send("Data Recived!")
+
 })
 
 app.listen(port, () => {

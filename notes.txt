@@ -1,0 +1,8 @@
+a] morgan - HTTP request logger middleware for node.js
+
+
+b] req.query in Express.js (a Node.js framework) is used to access query parameters from the URL of an incoming HTTP request. -> Only work with Get method
+
+        1) Get -> Req.query
+        2) Post -> Req.body
+
