@@ -50,7 +50,7 @@ app.get("/register", (req, res) => {
   res.render("register")
 })
 
-app.post("/register",async (req, res) => {
+app.post("/register", async (req, res) => {
 
   const { username, email, password } = req.body;
 
@@ -62,6 +62,29 @@ app.post("/register",async (req, res) => {
 
   res.json(newUser).send("User Created")
 })
+
+
+// CRUD - 
+
+// 1. Read The Users - 
+// app.get("/get-users", (req, res) => {
+//     userModel.find({
+//       username : 'tejas'
+//     }).then((user) => {
+//       res.send(user)
+//     })
+// })
+
+
+app.get("/get-users", (req, res) => {
+  userModel.findOne({
+    username : 'tejas'
+  }).then((user) => {
+    res.send(user)
+  })
+})
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
